@@ -10,7 +10,7 @@ public class DashboardViewModel extends ViewModel {
 
     public DashboardViewModel() {
         mText = new MutableLiveData<>();
-        mText.setValue("This is dashboard fragment");
+        mText.setValue("We need to insert a monthly calendar and add assignment and exam on each day.");
     }
 
     public LiveData<String> getText() {
