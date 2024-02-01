@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="16dp">
+
+    <EditText
+        android:id="@+id/editTextClassName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Class Name" />
+
+    <EditText
+        android:id="@+id/editTextClassTime"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Class Time (ex 10:00 - 11:00)"
+        android:inputType="time" />
+
+    <EditText
+        android:id="@+id/editTextInstructorName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Instructor Name" />
+</LinearLayout>

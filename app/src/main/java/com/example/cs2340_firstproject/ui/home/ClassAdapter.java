@@ -17,7 +17,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ClassAdapter extends ArrayAdapter<ClassItem> {
-    public ClassAdapter(Context context, ArrayList<ClassItem> classes) {
+    public ClassAdapter(Context context, List<ClassItem> classes) {
         super(context, 0, classes);
     }
 
@@ -33,10 +33,16 @@ public class ClassAdapter extends ArrayAdapter<ClassItem> {
         // Populate the data into the template view using the data object
         TextView courseNameTextView = convertView.findViewById(R.id.courseName);
         TextView timeTextView = convertView.findViewById(R.id.time);
+        TextView instructorTextView = convertView.findViewById(R.id.textViewInstructor);
         // Set the text for TextViews
         courseNameTextView.setText(classItem.getCourseName());
         timeTextView.setText(classItem.getTime());
+        instructorTextView.setText(classItem.getInstructor());
         // Return the completed view to render on screen
         return convertView;
+    }
+
+    public void addClass(ClassItem classItem) {
+        add(classItem);
     }
 }
