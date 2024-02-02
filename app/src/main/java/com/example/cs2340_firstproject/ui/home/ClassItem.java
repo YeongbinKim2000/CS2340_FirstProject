@@ -18,26 +18,14 @@ public class ClassItem {
         return courseName;
     }
 
-    public void setCourseName(String courseName) {
-        this.courseName = courseName;
-    }
-
     // Getter and setter for time
     public String getTime() {
         return time;
     }
 
-    public void setTime(String time) {
-        this.time = time;
-    }
-
     // Getter and setter for instructor
     public String getInstructor() {
         return instructor;
-    }
-
-    public void setInstructor(String instructor) {
-        this.instructor = instructor;
     }
 
     public boolean isSelected() {

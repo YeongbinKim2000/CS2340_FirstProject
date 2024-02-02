@@ -13,15 +13,12 @@ import android.widget.ListView;
 import android.widget.TimePicker;
 import android.widget.Toast;
 
-import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
-import androidx.recyclerview.widget.LinearLayoutManager;
 
 import com.example.cs2340_firstproject.R;
-import com.example.cs2340_firstproject.databinding.FragmentHomeBinding;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -215,18 +212,5 @@ public class HomeFragment extends Fragment {
 
         AlertDialog dialog = builder.create();
         dialog.show();
-    }
-
-
-    private void addClass() {
-        adapter.notifyDataSetChanged();
-    }
-
-    private void editClass() {
-
-    }
-
-    private void deleteClass() {
-        adapter.notifyDataSetChanged();
     }
 }

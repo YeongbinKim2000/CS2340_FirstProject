@@ -10,11 +10,7 @@ import android.widget.CompoundButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import androidx.annotation.NonNull;
-import androidx.recyclerview.widget.RecyclerView;
-
 import com.example.cs2340_firstproject.R;
-import com.example.cs2340_firstproject.databinding.ClassItemBinding;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -104,17 +100,6 @@ public class ClassAdapter extends ArrayAdapter<ClassItem> {
         clear();
         addAll(currentItems);
         notifyDataSetChanged();
-    }
-
-
-    // Call this method when the delete button is pressed
-    public void toggleDeleteMode() {
-        deleteMode = !deleteMode;
-        notifyDataSetChanged(); // This will trigger a refresh of the ListView
-    }
-
-    public void addClass(ClassItem classItem) {
-        add(classItem);
     }
 
     public void setDeleteMode(boolean deleteMode) {
