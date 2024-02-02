@@ -4,6 +4,7 @@ public class ClassItem {
     private String courseName;
     private String time;
     private String instructor;
+    private boolean isSelected;
 
     // Constructor
     public ClassItem(String courseName, String time, String instructor) {
@@ -37,5 +38,13 @@ public class ClassItem {
 
     public void setInstructor(String instructor) {
         this.instructor = instructor;
+    }
+
+    public boolean isSelected() {
+        return isSelected;
+    }
+
+    public void setSelected(boolean selected) {
+        isSelected = selected;
     }
 }

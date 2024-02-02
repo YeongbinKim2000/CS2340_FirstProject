@@ -33,6 +33,7 @@ public class HomeFragment extends Fragment {
     private ClassAdapter adapter;
     private ArrayList<ClassItem> arrayOfClasses;
     private ClassListViewModel viewModel;
+    private boolean deleteMode = false;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -86,8 +87,28 @@ public class HomeFragment extends Fragment {
             }
         });
 
-        deleteButton.setOnClickListener(v -> {
-            deleteClass();
+        deleteButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (deleteMode) {
+                    // Retrieve the items to delete from the adapter
+                    List<ClassItem> itemsToDelete = adapter.getSelectedItems();
+
+                    // Call the ViewModel to remove the items
+                    viewModel.removeClassItems(itemsToDelete); // Implement this method in your ViewModel
+
+                    // Clear selected items in the adapter
+                    adapter.deleteSelectedItems(); // This method should also update the classItems list
+
+                    deleteMode = false;
+                } else {
+                    // Enter delete mode and show checkboxes
+                    deleteMode = true;
+                }
+
+                // Update the adapter state and UI
+                adapter.setDeleteMode(deleteMode);
+            }
         });
 
         return rootView;

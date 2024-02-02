@@ -7,9 +7,9 @@
 
     <ImageView
         android:id="@+id/classIcon"
-        android:layout_width="48dp"
-        android:layout_height="48dp"
-        android:src="@mipmap/ic_launcher" />
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/gt_logo" />
 
     <LinearLayout
         android:layout_width="0dp"
@@ -35,6 +35,11 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
 
+        <CheckBox
+            android:id="@+id/checkbox"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="gone" />
     </LinearLayout>
 
 </LinearLayout>

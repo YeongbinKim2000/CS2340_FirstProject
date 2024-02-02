@@ -30,4 +30,20 @@ public class ClassListViewModel extends ViewModel {
             classItemList.setValue(currentList);
         }
     }
+
+    public void deleteItems(List<ClassItem> itemsToDelete) {
+        List<ClassItem> currentList = classItemList.getValue();
+        if (currentList != null) {
+            currentList.removeAll(itemsToDelete);
+            classItemList.setValue(currentList); // This will update the LiveData and the UI
+        }
+    }
+
+    public void removeClassItems(List<ClassItem> itemsToRemove) {
+        List<ClassItem> currentItems = classItemList.getValue();
+        if (currentItems != null) {
+            currentItems.removeAll(itemsToRemove);
+            classItemList.setValue(currentItems); // Update LiveData
+        }
+    }
 }
