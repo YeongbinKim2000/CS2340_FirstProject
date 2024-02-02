@@ -1,18 +1,33 @@
 package com.example.cs2340_firstproject.ui.home;
 
+import androidx.lifecycle.LiveData;
+import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 import com.example.cs2340_firstproject.ui.home.ClassListViewModel;
 import java.util.ArrayList;
 import java.util.List;
 
 public class ClassListViewModel extends ViewModel {
-    private List<ClassItem> classItemList = new ArrayList<>();
+    private MutableLiveData<List<ClassItem>> classItemList = new MutableLiveData<>(new ArrayList<>());
 
-    public List<ClassItem> getClassItemList() {
+    public void addClassItem(ClassItem newItem) {
+        List<ClassItem> currentList = classItemList.getValue();
+        if (currentList == null) {
+            currentList = new ArrayList<>();
+        }
+        currentList.add(newItem);
+        classItemList.setValue(currentList);
+    }
+
+    public LiveData<List<ClassItem>> getClassItemList() {
         return classItemList;
     }
 
-    public void addClassItem(ClassItem classItem) {
-        classItemList.add(classItem);
+    public void updateClassItem(int position, ClassItem updatedClass) {
+        List<ClassItem> currentList = classItemList.getValue();
+        if (currentList != null && position >= 0 && position < currentList.size()) {
+            currentList.set(position, updatedClass);
+            classItemList.setValue(currentList);
+        }
     }
 }

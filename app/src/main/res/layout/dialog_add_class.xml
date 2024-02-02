@@ -11,12 +11,28 @@
         android:layout_height="wrap_content"
         android:hint="Class Name" />
 
-    <EditText
-        android:id="@+id/editTextClassTime"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Class Time (ex 10:00 - 11:00)"
-        android:inputType="time" />
+        android:orientation="horizontal"
+        android:layout_marginTop="16dp">
+
+        <!-- TimePicker for start time -->
+        <TimePicker
+            android:id="@+id/timePickerStartTime"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:timePickerMode="spinner" />
+
+        <!-- TimePicker for end time -->
+        <TimePicker
+            android:id="@+id/timePickerEndTime"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:timePickerMode="spinner" />
+    </LinearLayout>
 
     <EditText
         android:id="@+id/editTextInstructorName"
