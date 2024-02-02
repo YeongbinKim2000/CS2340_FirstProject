@@ -8,6 +8,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.TimePicker;
@@ -21,6 +22,7 @@ import androidx.lifecycle.ViewModelProvider;
 import com.example.cs2340_firstproject.R;
 
 import java.util.ArrayList;
+import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Locale;
 
@@ -116,6 +118,7 @@ public class HomeFragment extends Fragment {
         LayoutInflater inflater = requireActivity().getLayoutInflater();
         View dialogView = inflater.inflate(R.layout.dialog_add_class, null);
 
+
         final EditText editTextClassName = dialogView.findViewById(R.id.editTextClassName);
         final EditText editTextInstructorName = dialogView.findViewById(R.id.editTextInstructorName);
 
@@ -124,6 +127,11 @@ public class HomeFragment extends Fragment {
         TimePicker timePickerEndTime = dialogView.findViewById(R.id.timePickerEndTime);
         timePickerStartTime.setIs24HourView(true);
         timePickerEndTime.setIs24HourView(true);
+        final CheckBox checkBoxMonday = dialogView.findViewById(R.id.checkbox_monday);
+        final CheckBox checkBoxTuesday = dialogView.findViewById(R.id.checkbox_tuesday);
+        final CheckBox checkBoxWednesday = dialogView.findViewById(R.id.checkbox_wednesday);
+        final CheckBox checkBoxThursday = dialogView.findViewById(R.id.checkbox_thursday);
+        final CheckBox checkBoxFriday = dialogView.findViewById(R.id.checkbox_friday);
 
         builder.setView(dialogView)
                 .setTitle("Add Class")
@@ -143,10 +151,17 @@ public class HomeFragment extends Fragment {
                         String classTimeRange = startTime + " - " + endTime;
                         String instructorName = editTextInstructorName.getText().toString().trim();
 
+                        LinkedHashSet<String> daysOfWeek = new LinkedHashSet<>();
+                        if (checkBoxMonday.isChecked()) daysOfWeek.add("Monday");
+                        if (checkBoxTuesday.isChecked()) daysOfWeek.add("Tuesday");
+                        if (checkBoxWednesday.isChecked()) daysOfWeek.add("Wednesday");
+                        if (checkBoxThursday.isChecked()) daysOfWeek.add("Thursday");
+                        if (checkBoxFriday.isChecked()) daysOfWeek.add("Friday");
+
                         // Validate the input
-                        if (!className.isEmpty() && !classTimeRange.isEmpty() && !instructorName.isEmpty()) {
+                        if (!className.isEmpty() && !instructorName.isEmpty() && !daysOfWeek.isEmpty()) {
                             // Add the new class to the ViewModel
-                            ClassItem newClass = new ClassItem(className, classTimeRange, instructorName);
+                            ClassItem newClass = new ClassItem(className, classTimeRange, instructorName, daysOfWeek);
                             viewModel.addClassItem(newClass);
 
                             //Update the adapter and ListView
@@ -172,11 +187,34 @@ public class HomeFragment extends Fragment {
         final EditText editTextInstructorName = dialogView.findViewById(R.id.editTextInstructorName);
         final TimePicker timePickerStartTime = dialogView.findViewById(R.id.timePickerStartTime);
         final TimePicker timePickerEndTime = dialogView.findViewById(R.id.timePickerEndTime);
+        final CheckBox checkBoxMonday = dialogView.findViewById(R.id.checkbox_monday);
+        final CheckBox checkBoxTuesday = dialogView.findViewById(R.id.checkbox_tuesday);
+        final CheckBox checkBoxWednesday = dialogView.findViewById(R.id.checkbox_wednesday);
+        final CheckBox checkBoxThursday = dialogView.findViewById(R.id.checkbox_thursday);
+        final CheckBox checkBoxFriday = dialogView.findViewById(R.id.checkbox_friday);
 
         // Pre-populate dialog with class details
         editTextClassName.setText(classItem.getCourseName());
         editTextInstructorName.setText(classItem.getInstructor());
         // You'll need to parse the start and end times from classItem.getClassTime() to set on TimePickers
+
+        // Parse the class start and end times and set them in the TimePickers
+        String[] times = classItem.getTime().split(" - ");
+        String[] startTime = times[0].split(":");
+        String[] endTime = times[1].split(":");
+
+        timePickerStartTime.setCurrentHour(Integer.parseInt(startTime[0]));
+        timePickerStartTime.setCurrentMinute(Integer.parseInt(startTime[1]));
+        timePickerEndTime.setCurrentHour(Integer.parseInt(endTime[0]));
+        timePickerEndTime.setCurrentMinute(Integer.parseInt(endTime[1]));
+
+        // Set the checkboxes based on the days of the week for the class
+        LinkedHashSet<String> daysOfWeek = classItem.getDaysOfWeek();
+        checkBoxMonday.setChecked(daysOfWeek.contains("Monday"));
+        checkBoxTuesday.setChecked(daysOfWeek.contains("Tuesday"));
+        checkBoxWednesday.setChecked(daysOfWeek.contains("Wednesday"));
+        checkBoxThursday.setChecked(daysOfWeek.contains("Thursday"));
+        checkBoxFriday.setChecked(daysOfWeek.contains("Friday"));
 
         builder.setView(dialogView)
                 .setTitle("Edit Class")
@@ -198,9 +236,16 @@ public class HomeFragment extends Fragment {
                         String classTimeRange = startTime + " - " + endTime;
                         String instructorName = editTextInstructorName.getText().toString().trim();
 
-                        if (!className.isEmpty() && !classTimeRange.isEmpty() && !instructorName.isEmpty()) {
+                        daysOfWeek.clear();
+                        if (checkBoxMonday.isChecked()) daysOfWeek.add("Monday");
+                        if (checkBoxTuesday.isChecked()) daysOfWeek.add("Tuesday");
+                        if (checkBoxWednesday.isChecked()) daysOfWeek.add("Wednesday");
+                        if (checkBoxThursday.isChecked()) daysOfWeek.add("Thursday");
+                        if (checkBoxFriday.isChecked()) daysOfWeek.add("Friday");
+
+                        if (!className.isEmpty() && !instructorName.isEmpty() && !daysOfWeek.isEmpty()) {
                             // Create an updated ClassItem object
-                            ClassItem updatedClass = new ClassItem(className, classTimeRange, instructorName);
+                            ClassItem updatedClass = new ClassItem(className, classTimeRange, instructorName, daysOfWeek);
                             viewModel.updateClassItem(position, updatedClass); // This updates the item in the LiveData list
                         } else {
                             Toast.makeText(getContext(), "All fields are required", Toast.LENGTH_SHORT).show();

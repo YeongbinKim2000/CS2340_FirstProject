@@ -1,6 +1,7 @@
 package com.example.cs2340_firstproject.ui.home;
 
 import android.content.Context;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -47,6 +48,7 @@ public class ClassAdapter extends ArrayAdapter<ClassItem> {
         ImageView iconView = convertView.findViewById(R.id.classIcon);
         TextView courseNameTextView = convertView.findViewById(R.id.courseName);
         TextView timeTextView = convertView.findViewById(R.id.time);
+        TextView daysTextView = convertView.findViewById(R.id.daysTextView);
         TextView instructorTextView = convertView.findViewById(R.id.textViewInstructor);
         CheckBox checkBox = convertView.findViewById(R.id.checkbox); // Your checkbox ID from the layout
 
@@ -62,6 +64,10 @@ public class ClassAdapter extends ArrayAdapter<ClassItem> {
         courseNameTextView.setText(classItem.getCourseName());
         timeTextView.setText(classItem.getTime());
         instructorTextView.setText(classItem.getInstructor());
+
+        // Convert the days of the week Set to a comma-separated String
+        String days = TextUtils.join(", ", classItem.getDaysOfWeek());
+        daysTextView.setText(days); // Set this text to the TextView in your layout
 
         // Set the visibility and checked state of the checkbox
         checkBox.setVisibility(deleteMode ? View.VISIBLE : View.GONE);
