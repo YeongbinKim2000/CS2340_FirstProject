@@ -1,16 +1,15 @@
-package com.example.cs2340_firstproject.ui.home;
+package com.example.cs2340_firstproject.ui.todo;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
-public class HomeViewModel extends ViewModel {
-
+public class TodoViewModel extends ViewModel {
     private final MutableLiveData<String> mText;
 
-    public HomeViewModel() {
+    public TodoViewModel() {
         mText = new MutableLiveData<>();
-        mText.setValue("We'll put time table here including class details.");
+        mText.setValue("This page is used for todo");
     }
 
     public LiveData<String> getText() {
