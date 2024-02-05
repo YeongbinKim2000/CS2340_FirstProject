@@ -50,14 +50,14 @@ public class ClassAdapter extends ArrayAdapter<ClassItem> {
         TextView timeTextView = convertView.findViewById(R.id.time);
         TextView daysTextView = convertView.findViewById(R.id.daysTextView);
         TextView instructorTextView = convertView.findViewById(R.id.textViewInstructor);
-        CheckBox checkBox = convertView.findViewById(R.id.checkbox); // Your checkbox ID from the layout
+        CheckBox checkBox = convertView.findViewById(R.id.checkbox);
 
         // Set the image resource for the ImageView
         iconView.setImageResource(R.drawable.gt_logo);
-        int imageSize = dpToPx(getContext(), 48); // for example 48dp
+        int imageSize = dpToPx(getContext(), 48);
         ViewGroup.LayoutParams layoutParams = iconView.getLayoutParams();
-        layoutParams.width = imageSize; // specify your desired width
-        layoutParams.height = imageSize; // specify your desired height
+        layoutParams.width = imageSize;
+        layoutParams.height = imageSize;
         iconView.setLayoutParams(layoutParams);
 
         // Set the text for TextViews

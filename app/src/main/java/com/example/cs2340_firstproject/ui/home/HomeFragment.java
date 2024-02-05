@@ -75,7 +75,7 @@ public class HomeFragment extends Fragment {
             }
         });
 
-        // Set up the add, edit, and delete buttons
+        // Set up the add and delete buttons
         Button addButton = rootView.findViewById(R.id.button_add);
         Button deleteButton = rootView.findViewById(R.id.button_delete);
 

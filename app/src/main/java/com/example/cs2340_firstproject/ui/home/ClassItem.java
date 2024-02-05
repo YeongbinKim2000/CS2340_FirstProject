@@ -1,7 +1,5 @@
 package com.example.cs2340_firstproject.ui.home;
 
-import android.text.TextUtils;
-
 import java.util.LinkedHashSet;
 
 public class ClassItem {
@@ -19,17 +17,17 @@ public class ClassItem {
         this.daysOfWeek = daysOfWeek;
     }
 
-    // Getter and setter for courseName
+    // Getter for courseName
     public String getCourseName() {
         return courseName;
     }
 
-    // Getter and setter for time
+    // Getter for time
     public String getTime() {
         return time;
     }
 
-    // Getter and setter for instructor
+    // Getter for instructor
     public String getInstructor() {
         return instructor;
     }
