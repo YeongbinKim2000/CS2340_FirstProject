@@ -22,4 +22,13 @@
         android:name="com.example.cs2340_firstproject.ui.notifications.NotificationsFragment"
         android:label="@string/title_notifications"
         tools:layout="@layout/fragment_notifications" />
+
+    <fragment
+        android:id="@+id/navigation_settings"
+        android:name="com.example.cs2340_firstproject.ui.settings.SettingsFragment"
+        android:label="@string/notifications"
+        tools:layout="@layout/fragment_settings" />
+
+
+
 </navigation>
